@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      body {
+        padding: 10px;
+        font-family: system-ui;
+        background-color: #242424;
+        color: #cccccc;
+        margin: 0;
+      }
+
+      h2 {
+        color: #e8e8e8;
+      }
+
+      .search-container {
+        margin: 20px 0;
+      }
+
+      #selectorInput {
+        width: 100%;
+        padding: 8px;
+        background-color: #1e1e1e;
+        color: #cccccc;
+        border: 1px solid #3c3c3c;
+        border-radius: 4px;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        box-sizing: border-box;
+      }
+
+      #selectorInput:focus {
+        outline: none;
+        border-color: #007acc;
+      }
+
+      #results {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #1e1e1e;
+        border-radius: 4px;
+        min-height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>My Custom Panel</h2>
+    <div class="search-container">
+      <input type="text" id="selectorInput" placeholder="Enter CSS selector" />
+    </div>
+    <div id="results">Results will appear here</div>
+    <script src="panel.js"></script>
+  </body>
+</html>

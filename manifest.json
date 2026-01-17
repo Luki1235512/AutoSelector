@@ -1,0 +1,11 @@
+{
+  "name": "Hello Extension of the world!",
+  "description": "Base Level Extension",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "img/hello_extensions.png"
+  },
+  "devtools_page": "devtools.html"
+}

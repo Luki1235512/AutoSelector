@@ -1,0 +1,31 @@
+{
+  "name": "autoselector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --config webpack.config.js --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luki1235512/AutoSelector.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Luki1235512/AutoSelector/issues"
+  },
+  "homepage": "https://github.com/Luki1235512/AutoSelector#readme",
+  "devDependencies": {
+    "@types/chrome": "^0.1.32",
+    "copy-webpack-plugin": "^13.0.1",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
+    "webpack": "^5.104.1",
+    "webpack-cli": "^6.0.1"
+  }
+}
