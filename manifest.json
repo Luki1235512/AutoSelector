@@ -8,5 +8,5 @@
     "default_icon": "img/paw-solid-full.png"
   },
   "devtools_page": "devtools.html",
-  "permissions": ["storage"]
+  "permissions": ["storage", "clipboardWrite"]
 }

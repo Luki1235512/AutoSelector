@@ -237,8 +237,81 @@ function getFirstMatchingElementSelector(sel: string, xpath: boolean) {
   }
 }
 
-document.getElementById("settingsIcon")?.addEventListener("click", () => {
-  window.open(chrome.runtime.getURL("settings.html"), "_blank");
+function showCopyFeedback(iconElement: HTMLElement | string) {
+  const icon =
+    typeof iconElement === "string"
+      ? document.getElementById(iconElement)
+      : iconElement;
+  if (!icon) return;
+
+  const originalOpacity = icon.style.opacity;
+  icon.style.opacity = "1";
+  icon.style.fill = "#4ec9b0";
+
+  setTimeout(() => {
+    icon.style.opacity = originalOpacity;
+    icon.style.fill = "";
+  }, 300);
+}
+
+function copyToClipboard(text: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.left = "-999999px";
+    textarea.style.top = "-999999px";
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+
+    try {
+      const successful = document.execCommand("copy");
+      document.body.removeChild(textarea);
+      if (successful) {
+        resolve();
+      } else {
+        reject(new Error("Copy command failed"));
+      }
+    } catch (err) {
+      document.body.removeChild(textarea);
+      reject(err);
+    }
+  });
+}
+
+document.getElementById("copyInputIcon")?.addEventListener("click", () => {
+  const inputValue = selectorInput.value.trim();
+  if (inputValue) {
+    copyToClipboard(inputValue)
+      .then(() => {
+        showCopyFeedback("copyInputIcon");
+      })
+      .catch((err) => {
+        console.error("Failed to copy:", err);
+      });
+  }
+});
+
+document.querySelectorAll(".copy-icon[data-selector]").forEach((icon) => {
+  icon.addEventListener("click", (e) => {
+    const selectorType = (e.currentTarget as HTMLElement).getAttribute(
+      "data-selector",
+    );
+    if (selectorType) {
+      const element = document.getElementById(`selector-${selectorType}`);
+      if (element && !element.classList.contains("empty")) {
+        const text = element.textContent || "";
+        copyToClipboard(text)
+          .then(() => {
+            showCopyFeedback(e.currentTarget as HTMLElement);
+          })
+          .catch((err) => {
+            console.error("Failed to copy:", err);
+          });
+      }
+    }
+  });
 });
 
 selectorInput?.addEventListener("input", (e) => {

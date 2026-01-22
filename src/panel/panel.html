@@ -89,11 +89,32 @@
         font-size: 13px;
         word-break: break-all;
         color: #ce9178;
+        padding-right: 35px;
       }
 
       .selector-value.empty {
         color: #6a6a6a;
         font-style: italic;
+      }
+
+      .copy-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity 0.2s;
+      }
+
+      .copy-icon:hover {
+        opacity: 1;
+      }
+
+      .copy-icon:active {
+        opacity: 0.3;
       }
     </style>
   </head>
@@ -113,43 +134,142 @@
       </svg>
     </div>
     <div class="search-container">
-      <input
-        type="text"
-        id="selectorInput"
-        placeholder="Enter CSS selector or XPath"
-      />
+      <div style="position: relative">
+        <input
+          type="text"
+          id="selectorInput"
+          placeholder="Enter CSS selector or XPath"
+        />
+        <svg
+          class="copy-icon"
+          id="copyInputIcon"
+          viewBox="0 0 448 512"
+          fill="currentColor"
+          style="
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            opacity: 0.7;
+          "
+        >
+          <!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+          <path
+            d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L400 115.9V320c0 8.8-7.2 16-16 16zM192 384H384c35.3 0 64-28.7 64-64V115.9c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1H192c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H96V128H64z"
+          />
+        </svg>
+      </div>
       <div id="selector-status"></div>
     </div>
     <div id="results">
       <div class="selector-item">
         <span class="selector-label">XPath:</span>
-        <div class="selector-value empty" id="selector-xpath">
-          Not available
+        <div style="position: relative">
+          <div class="selector-value empty" id="selector-xpath">
+            Not available
+          </div>
+          <svg
+            class="copy-icon"
+            data-selector="xpath"
+            viewBox="0 0 448 512"
+            fill="currentColor"
+          >
+            <path
+              d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L400 115.9V320c0 8.8-7.2 16-16 16zM192 384H384c35.3 0 64-28.7 64-64V115.9c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1H192c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H96V128H64z"
+            />
+          </svg>
         </div>
       </div>
       <div class="selector-item">
         <span class="selector-label">CSS Path:</span>
-        <div class="selector-value empty" id="selector-cssPath">
-          Not available
+        <div style="position: relative">
+          <div class="selector-value empty" id="selector-cssPath">
+            Not available
+          </div>
+          <svg
+            class="copy-icon"
+            data-selector="cssPath"
+            viewBox="0 0 448 512"
+            fill="currentColor"
+          >
+            <path
+              d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L400 115.9V320c0 8.8-7.2 16-16 16zM192 384H384c35.3 0 64-28.7 64-64V115.9c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1H192c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H96V128H64z"
+            />
+          </svg>
         </div>
       </div>
       <div class="selector-item">
         <span class="selector-label">ID:</span>
-        <div class="selector-value empty" id="selector-id">Not available</div>
+        <div style="position: relative">
+          <div class="selector-value empty" id="selector-id">Not available</div>
+          <svg
+            class="copy-icon"
+            data-selector="id"
+            viewBox="0 0 448 512"
+            fill="currentColor"
+          >
+            <path
+              d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L400 115.9V320c0 8.8-7.2 16-16 16zM192 384H384c35.3 0 64-28.7 64-64V115.9c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1H192c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H96V128H64z"
+            />
+          </svg>
+        </div>
       </div>
       <div class="selector-item">
         <span class="selector-label">Class:</span>
-        <div class="selector-value empty" id="selector-class">
-          Not available
+        <div style="position: relative">
+          <div class="selector-value empty" id="selector-class">
+            Not available
+          </div>
+          <svg
+            class="copy-icon"
+            data-selector="class"
+            viewBox="0 0 448 512"
+            fill="currentColor"
+          >
+            <path
+              d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L400 115.9V320c0 8.8-7.2 16-16 16zM192 384H384c35.3 0 64-28.7 64-64V115.9c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1H192c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H96V128H64z"
+            />
+          </svg>
         </div>
       </div>
       <div class="selector-item">
         <span class="selector-label">Name:</span>
-        <div class="selector-value empty" id="selector-name">Not available</div>
+        <div style="position: relative">
+          <div class="selector-value empty" id="selector-name">
+            Not available
+          </div>
+          <svg
+            class="copy-icon"
+            data-selector="name"
+            viewBox="0 0 448 512"
+            fill="currentColor"
+          >
+            <path
+              d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L400 115.9V320c0 8.8-7.2 16-16 16zM192 384H384c35.3 0 64-28.7 64-64V115.9c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1H192c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H96V128H64z"
+            />
+          </svg>
+        </div>
       </div>
       <div class="selector-item">
         <span class="selector-label">Tag:</span>
-        <div class="selector-value empty" id="selector-tag">Not available</div>
+        <div style="position: relative">
+          <div class="selector-value empty" id="selector-tag">
+            Not available
+          </div>
+          <svg
+            class="copy-icon"
+            data-selector="tag"
+            viewBox="0 0 448 512"
+            fill="currentColor"
+          >
+            <path
+              d="M384 336H192c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16l140.1 0L400 115.9V320c0 8.8-7.2 16-16 16zM192 384H384c35.3 0 64-28.7 64-64V115.9c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1H192c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H256c35.3 0 64-28.7 64-64V416H272v32c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192c0-8.8 7.2-16 16-16H96V128H64z"
+            />
+          </svg>
+        </div>
       </div>
     </div>
     <script src="panel.js"></script>
