@@ -377,6 +377,10 @@ selectorInput?.addEventListener("input", (e) => {
         element.classList.add("empty");
       }
     });
+    const statusElement = document.getElementById("selector-status");
+    if (statusElement) {
+      statusElement.textContent = "";
+    }
     chrome.devtools.inspectedWindow.eval(clearHighlights());
     return;
   }
