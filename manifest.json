@@ -5,7 +5,7 @@
   "manifest_version": 3,
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "img/hello_extensions.png"
+    "default_icon": "img/paw-solid-full.png"
   },
   "devtools_page": "devtools.html",
   "permissions": ["storage"]
