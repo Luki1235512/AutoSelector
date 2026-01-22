@@ -314,6 +314,10 @@ document.querySelectorAll(".copy-icon[data-selector]").forEach((icon) => {
   });
 });
 
+document.getElementById("settingsIcon")?.addEventListener("click", () => {
+  window.open(chrome.runtime.getURL("settings.html"), "_blank");
+});
+
 selectorInput?.addEventListener("input", (e) => {
   const selector = (e.target as HTMLInputElement).value.trim();
 
