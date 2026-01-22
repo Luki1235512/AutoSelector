@@ -436,7 +436,7 @@ chrome.devtools.panels.elements.onSelectionChanged.addListener(() => {
       if (!isException && result && typeof result === "string") {
         const selectors = JSON.parse(result);
 
-        selectorInput.value = selectors.cssPath || "";
+        selectorInput.value = selectors.xpath || "";
 
         selectorTypes.forEach((type) => {
           const element = document.getElementById(`selector-${type}`);
