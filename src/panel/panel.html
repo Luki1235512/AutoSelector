@@ -35,21 +35,91 @@
         border-color: #007acc;
       }
 
+      #selector-status {
+        margin: 10px 0;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
       #results {
         margin-top: 20px;
-        padding: 10px;
+        padding: 15px;
         background-color: #1e1e1e;
         border-radius: 4px;
         min-height: 100px;
       }
+
+      .selector-item {
+        margin: 12px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .selector-label {
+        color: #569cd6;
+        font-weight: bold;
+        font-size: 13px;
+      }
+
+      .selector-value {
+        background: #2d2d2d;
+        padding: 6px 10px;
+        border-radius: 3px;
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+        word-break: break-all;
+        color: #ce9178;
+      }
+
+      .selector-value.empty {
+        color: #6a6a6a;
+        font-style: italic;
+      }
     </style>
   </head>
   <body>
-    <h2>My Custom Panel</h2>
+    <h2>Element Selector</h2>
     <div class="search-container">
-      <input type="text" id="selectorInput" placeholder="Enter CSS selector" />
+      <input
+        type="text"
+        id="selectorInput"
+        placeholder="Enter CSS selector or XPath"
+      />
+      <div id="selector-status"></div>
     </div>
-    <div id="results">Results will appear here</div>
+    <div id="results">
+      <div class="selector-item">
+        <span class="selector-label">XPath:</span>
+        <div class="selector-value empty" id="selector-xpath">
+          Not available
+        </div>
+      </div>
+      <div class="selector-item">
+        <span class="selector-label">CSS Path:</span>
+        <div class="selector-value empty" id="selector-cssPath">
+          Not available
+        </div>
+      </div>
+      <div class="selector-item">
+        <span class="selector-label">ID:</span>
+        <div class="selector-value empty" id="selector-id">Not available</div>
+      </div>
+      <div class="selector-item">
+        <span class="selector-label">Class:</span>
+        <div class="selector-value empty" id="selector-class">
+          Not available
+        </div>
+      </div>
+      <div class="selector-item">
+        <span class="selector-label">Name:</span>
+        <div class="selector-value empty" id="selector-name">Not available</div>
+      </div>
+      <div class="selector-item">
+        <span class="selector-label">Tag:</span>
+        <div class="selector-value empty" id="selector-tag">Not available</div>
+      </div>
+    </div>
     <script src="panel.js"></script>
   </body>
 </html>
