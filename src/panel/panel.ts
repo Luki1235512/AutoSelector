@@ -153,69 +153,6 @@ function getSelectedElementSelector() {
   return JSON.stringify(selectors);
 }
 
-selectorInput?.addEventListener("input", (e) => {
-  const selector = (e.target as HTMLInputElement).value.trim();
-
-  if (!selector) {
-    selectorTypes.forEach((type) => {
-      const element = document.getElementById(`selector-${type}`);
-      if (element) {
-        element.textContent = "Not available";
-        element.classList.add("empty");
-      }
-    });
-    chrome.devtools.inspectedWindow.eval(clearHighlights());
-    return;
-  }
-
-  const isXPath = selector.startsWith("/") || selector.startsWith("//");
-
-  chrome.devtools.inspectedWindow.eval(
-    highlightElements(selector, isXPath),
-    (result, isException) => {
-      const statusElement = document.getElementById("selector-status");
-      if (statusElement) {
-        if (isException) {
-          statusElement.textContent = `Error: Invalid ${isXPath ? "XPath" : "CSS"} selector`;
-          statusElement.style.color = "#f48771";
-        } else {
-          const selectorType = isXPath ? "XPath" : "CSS";
-          statusElement.textContent = `Found ${result} element(s) matching ${selectorType} selector`;
-          statusElement.style.color = "#4ec9b0";
-
-          if (Number(result) === 1) {
-            chrome.devtools.inspectedWindow.eval(
-              `(${getFirstMatchingElementSelector.toString()})(${JSON.stringify(selector)}, ${isXPath})`,
-              (selectorResult, selectorException) => {
-                if (
-                  !selectorException &&
-                  selectorResult &&
-                  typeof selectorResult === "string"
-                ) {
-                  const selectors = JSON.parse(selectorResult);
-
-                  selectorTypes.forEach((type) => {
-                    const element = document.getElementById(`selector-${type}`);
-                    if (element) {
-                      if (selectors[type]) {
-                        element.textContent = selectors[type];
-                        element.classList.remove("empty");
-                      } else {
-                        element.textContent = "Not available";
-                        element.classList.add("empty");
-                      }
-                    }
-                  });
-                }
-              },
-            );
-          }
-        }
-      }
-    },
-  );
-});
-
 function getFirstMatchingElementSelector(sel: string, xpath: boolean) {
   let element: Element | null = null;
 
@@ -299,6 +236,69 @@ function getFirstMatchingElementSelector(sel: string, xpath: boolean) {
     return null;
   }
 }
+
+selectorInput?.addEventListener("input", (e) => {
+  const selector = (e.target as HTMLInputElement).value.trim();
+
+  if (!selector) {
+    selectorTypes.forEach((type) => {
+      const element = document.getElementById(`selector-${type}`);
+      if (element) {
+        element.textContent = "Not available";
+        element.classList.add("empty");
+      }
+    });
+    chrome.devtools.inspectedWindow.eval(clearHighlights());
+    return;
+  }
+
+  const isXPath = selector.startsWith("/") || selector.startsWith("//");
+
+  chrome.devtools.inspectedWindow.eval(
+    highlightElements(selector, isXPath),
+    (result, isException) => {
+      const statusElement = document.getElementById("selector-status");
+      if (statusElement) {
+        if (isException) {
+          statusElement.textContent = `Error: Invalid ${isXPath ? "XPath" : "CSS"} selector`;
+          statusElement.style.color = "#f48771";
+        } else {
+          const selectorType = isXPath ? "XPath" : "CSS";
+          statusElement.textContent = `Found ${result} element(s) matching ${selectorType} selector`;
+          statusElement.style.color = "#4ec9b0";
+
+          if (typeof result === "number" && result > 0) {
+            chrome.devtools.inspectedWindow.eval(
+              `(${getFirstMatchingElementSelector.toString()})(${JSON.stringify(selector)}, ${isXPath})`,
+              (selectorResult, selectorException) => {
+                if (
+                  !selectorException &&
+                  selectorResult &&
+                  typeof selectorResult === "string"
+                ) {
+                  const selectors = JSON.parse(selectorResult);
+
+                  selectorTypes.forEach((type) => {
+                    const element = document.getElementById(`selector-${type}`);
+                    if (element) {
+                      if (selectors[type]) {
+                        element.textContent = selectors[type];
+                        element.classList.remove("empty");
+                      } else {
+                        element.textContent = "Not available";
+                        element.classList.add("empty");
+                      }
+                    }
+                  });
+                }
+              },
+            );
+          }
+        }
+      }
+    },
+  );
+});
 
 chrome.devtools.panels.elements.onSelectionChanged.addListener(() => {
   chrome.devtools.inspectedWindow.eval(
