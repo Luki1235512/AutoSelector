@@ -1,6 +1,6 @@
 chrome.devtools.panels.elements.createSidebarPane(
-  "My Custom Panel",
+  "SelectorSnap",
   function (sidebar) {
     sidebar.setPage("panel.html");
-  }
+  },
 );
