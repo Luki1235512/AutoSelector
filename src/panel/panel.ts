@@ -132,17 +132,41 @@ function getSelectedElementSelector() {
   let xpath = "";
   let node: Element | null = element;
   while (node && node !== document.body) {
+    let segment = "";
+    const tagName = node.tagName.toLowerCase();
+
+    if (node.getAttribute("data-test")) {
+      segment = `//${tagName}[@data-test="${node.getAttribute("data-test")}"]`;
+      xpath = segment + xpath;
+      break;
+    } else if (node.id) {
+      segment = `//${tagName}[@id="${node.id}"]`;
+      xpath = segment + xpath;
+      break;
+    } else if (node.className && typeof node.className === "string") {
+      const classes = node.className.trim().split(/\s+/).filter(Boolean);
+      if (classes.length > 0) {
+        segment = `//${tagName}[@class="${classes.join(" ")}"]`;
+        xpath = segment + xpath;
+        break;
+      }
+    }
+
     let index = 1;
     let sibling = node.previousElementSibling;
     while (sibling) {
       if (sibling.tagName === node.tagName) index++;
       sibling = sibling.previousElementSibling;
     }
-    const tagName = node.tagName.toLowerCase();
     xpath = `/${tagName}[${index}]${xpath}`;
     node = node.parentElement;
   }
-  selectors.xpath = `/html/body${xpath}`;
+
+  if (!xpath.startsWith("//")) {
+    selectors.xpath = `/html/body${xpath}`;
+  } else {
+    selectors.xpath = xpath;
+  }
 
   selectors.tag = element.tagName.toLowerCase();
 
@@ -213,17 +237,41 @@ function getFirstMatchingElementSelector(sel: string, xpath: boolean) {
     let xpathStr = "";
     let node: Element | null = element;
     while (node && node !== document.body) {
+      let segment = "";
+      const tagName = node.tagName.toLowerCase();
+
+      if (node.getAttribute("data-test")) {
+        segment = `//${tagName}[@data-test="${node.getAttribute("data-test")}"]`;
+        xpathStr = segment + xpathStr;
+        break;
+      } else if (node.id) {
+        segment = `//${tagName}[@id="${node.id}"]`;
+        xpathStr = segment + xpathStr;
+        break;
+      } else if (node.className && typeof node.className === "string") {
+        const classes = node.className.trim().split(/\s+/).filter(Boolean);
+        if (classes.length > 0) {
+          segment = `//${tagName}[@class="${classes.join(" ")}"]`;
+          xpathStr = segment + xpathStr;
+          break;
+        }
+      }
+
       let index = 1;
       let sibling = node.previousElementSibling;
       while (sibling) {
         if (sibling.tagName === node.tagName) index++;
         sibling = sibling.previousElementSibling;
       }
-      const tagName = node.tagName.toLowerCase();
       xpathStr = `/${tagName}[${index}]${xpathStr}`;
       node = node.parentElement;
     }
-    selectors.xpath = `/html/body${xpathStr}`;
+
+    if (!xpathStr.startsWith("//")) {
+      selectors.xpath = `/html/body${xpathStr}`;
+    } else {
+      selectors.xpath = xpathStr;
+    }
 
     selectors.tag = element.tagName.toLowerCase();
 
