@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/Luki1235512/AutoSelector#readme",
   "devDependencies": {
-    "@types/chrome": "^0.1.32",
+    "@types/chrome": "^0.1.36",
     "copy-webpack-plugin": "^13.0.1",
     "ts-loader": "^9.5.4",
     "typescript": "^5.9.3",
