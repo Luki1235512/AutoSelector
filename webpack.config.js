@@ -7,6 +7,7 @@ module.exports = {
     devtools: "./src/devtools/devtools.ts",
     popup: "./src/popup/popup.ts",
     panel: "./src/panel/panel.ts",
+    settings: "./src/settings/settings.ts",
   },
   module: {
     rules: [
@@ -31,6 +32,7 @@ module.exports = {
         { from: "src/devtools/devtools.html", to: "devtools.html" },
         { from: "src/popup/popup.html", to: "popup.html" },
         { from: "src/panel/panel.html", to: "panel.html" },
+        { from: "src/settings/settings.html", to: "settings.html" },
         { from: "src/img", to: "img" },
       ],
     }),
