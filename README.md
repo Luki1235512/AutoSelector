@@ -10,7 +10,7 @@ A Chrome DevTools extension that helps you generate and test CSS selectors and X
 
 ## Installation
 
-### Install from Source (Developer Mode)
+### Install from Source
 
 1. **Clone or download this repository**:
 
@@ -40,6 +40,24 @@ A Chrome DevTools extension that helps you generate and test CSS selectors and X
    - Select the `dist` folder from your project directory
 
 5. **Verify installation**:
+   - The AutoSelector icon should appear in your extensions toolbar
+   - Open Chrome DevTools (F12 or right-click → Inspect)
+   - Look for the "AutoSelector" sidebar pane in the Elements panel
+
+### Install from Release
+
+1. **Download the latest release**:
+   - Go to the [Releases page](https://github.com/Luki1235512/AutoSelector/releases)
+   - Download `AutoSelector-v*.zip`
+   - Extract the ZIP file to a folder on your computer
+
+2. **Load the extension in Chrome**:
+   - Open Chrome and navigate to `chrome://extensions/`
+   - Enable **Developer mode** (toggle in the top-right corner)
+   - Click **Load unpacked**
+   - Select the extracted folder
+
+3. **Verify installation**:
    - The AutoSelector icon should appear in your extensions toolbar
    - Open Chrome DevTools (F12 or right-click → Inspect)
    - Look for the "AutoSelector" sidebar pane in the Elements panel
