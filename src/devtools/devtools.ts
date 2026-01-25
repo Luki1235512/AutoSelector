@@ -1,5 +1,5 @@
 chrome.devtools.panels.elements.createSidebarPane(
-  "SelectorSnap",
+  "AutoSelector",
   function (sidebar) {
     sidebar.setPage("panel.html");
   },

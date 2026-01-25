@@ -1,4 +1,4 @@
-# SelectorSnap
+# AutoSelector
 
 A Chrome DevTools extension that helps you generate and test CSS selectors and XPath expressions for web elements.
 
@@ -40,9 +40,9 @@ A Chrome DevTools extension that helps you generate and test CSS selectors and X
    - Select the `dist` folder from your project directory
 
 5. **Verify installation**:
-   - The SelectorSnap icon should appear in your extensions toolbar
+   - The AutoSelector icon should appear in your extensions toolbar
    - Open Chrome DevTools (F12 or right-click → Inspect)
-   - Look for the "SelectorSnap" sidebar pane in the Elements panel
+   - Look for the "AutoSelector" sidebar pane in the Elements panel
 
 ## License
 
