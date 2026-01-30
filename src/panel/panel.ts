@@ -1,6 +1,4 @@
-console.log("Custom DevTools panel loaded!");
-
-const selectorTypes = ["id", "class", "cssPath", "name", "tag", "xpath"];
+const selectorTypes = ["cssPath", "xpath"];
 
 const selectorInput = document.getElementById(
   "selectorInput",
