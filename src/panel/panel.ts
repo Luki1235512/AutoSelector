@@ -383,7 +383,10 @@ selectorInput?.addEventListener("input", (e) => {
     return;
   }
 
-  const isXPath = selector.startsWith("/") || selector.startsWith("//");
+  const isXPath =
+    selector.startsWith("/") ||
+    selector.startsWith("(") ||
+    selector.includes("[@");
 
   chrome.devtools.inspectedWindow.eval(
     highlightElements(selector, isXPath),
@@ -391,11 +394,10 @@ selectorInput?.addEventListener("input", (e) => {
       const statusElement = document.getElementById("selector-status");
       if (statusElement) {
         if (isException) {
-          statusElement.textContent = `Error: Invalid ${isXPath ? "XPath" : "CSS"} selector`;
+          statusElement.textContent = `Error: Invalid selector`;
           statusElement.style.color = "#f48771";
         } else {
-          const selectorType = isXPath ? "XPath" : "CSS";
-          statusElement.textContent = `Found ${result} element(s) matching ${selectorType} selector`;
+          statusElement.textContent = `Found ${result} element(s) matching selector`;
           statusElement.style.color = "#4ec9b0";
 
           if (typeof result === "number" && result > 0) {

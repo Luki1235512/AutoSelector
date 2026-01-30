@@ -6,7 +6,7 @@ A Chrome DevTools extension that helps you generate and test CSS selectors and X
 
 ## Features
 
-- **Automatic Selector Generation**: Generates multiple selector types (XPath, CSS Path, ID, Class, Name, Tag) for selected elements
+- **Automatic Selector Generation**: Generates multiple selector types (XPath, CSS Path) for selected elements
 - **Element Highlighting**: Visual feedback showing matched elements on the page
 - **Easy Copy**: One-click copy functionality for all selectors
 
